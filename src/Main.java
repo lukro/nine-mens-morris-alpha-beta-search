@@ -70,97 +70,6 @@ public class Main {
 		do { 
 			currentPlayer = setupGame();
 		} while(currentPlayer == null);
-
-//		game = new Game(4, 'B', 'W');
-//		currentPlayer = game.getAIPlayer();
-		
-
-		
-//		Board b = game.getBoard();
-//		Move testMove = new Move(null, b.getPos(8), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(11), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(16), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(23), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-//
-//		game.getHumanPlayer().decNumOfRemainingPieces();
-//		game.getHumanPlayer().decNumOfRemainingPieces();
-//		game.getHumanPlayer().decNumOfRemainingPieces();
-//		game.getHumanPlayer().decNumOfRemainingPieces();
-//		game.getHumanPlayer().decNumOfRemainingPieces();
-//
-//		
-//		testMove = new Move(null, b.getPos(4), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(7), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(10), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(0), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(21), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-		
-
-//		Board b = game.getBoard();
-//		Move testMove = new Move(null, b.getPos(0), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(5), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		testMove = new Move(null, b.getPos(6), null);
-//		game.applyMove(testMove, game.getAIPlayer());
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//		game.getAIPlayer().incNumOfPlacedPieces();
-//
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//		game.getAIPlayer().decNumOfRemainingPieces();
-//
-//
-//
-//		
-//		testMove = new Move(null, b.getPos(1), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(3), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(4), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(8), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(12), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(17), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(21), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		testMove = new Move(null, b.getPos(23), null);
-//		game.applyMove(testMove, game.getHumanPlayer());
-//		game.getHumanPlayer().incNumOfPlacedPieces();
-
 	
 				
 		while(!game.hasLost(currentPlayer) && numberOfMoves < MAX_MOVES) {
@@ -219,7 +128,7 @@ public class Main {
 
 		} else {
 			game.printBoard();
-			System.out.println("It´s your turn. You´re in the Placing Pieces Phase. Give an index where to place the piece.");
+			System.out.println("Itï¿½s your turn. Youï¿½re in the Placing Pieces Phase. Give an index where to place the piece.");
 			try {
 				index = input.nextInt(); //might throw InputMismatchException
 				move = new Move(null, game.getBoard().getPos(index),null); //getPos might throw IllegalArgumentException
@@ -261,7 +170,7 @@ public class Main {
 			}
 		} else {
 			game.printBoard();
-			System.out.println("It´s your turn. You´re in the " + currentPlayer.getGamePhase() + " Phase. Give a source index:");
+			System.out.println("Itï¿½s your turn. Youï¿½re in the " + currentPlayer.getGamePhase() + " Phase. Give a source index:");
 			try {
 				sourceIndex = input.nextInt(); //might throw InputMismatchException
 				System.out.println("Give a destination index:");
@@ -293,7 +202,7 @@ public class Main {
 	 * @param move The move that might made a mill
 	 */
 	public static void checkMill(Game game, Player currentPlayer, Move move) {
-		//You don´t need to check if the AIPlayer made a mill,
+		//You donï¿½t need to check if the AIPlayer made a mill,
 		//because it was already checked in the computation of the best move and applied in applyMove 
 		if(game.checkIfMill(currentPlayer, move,null) && currentPlayer != game.getAIPlayer()) {
 			
@@ -307,7 +216,7 @@ public class Main {
 							game.getOtherPlayer(currentPlayer).decNumOfRemainingPieces();
 							return;
 						}
-						System.out.println("You made a mill. Give the index of the opponent´s piece to remove:");
+						System.out.println("You made a mill. Give the index of the opponentï¿½s piece to remove:");
 						removeIndex = input.nextInt();
 						if(game.removePiece(removeIndex, currentPlayer)) {
 							break;
@@ -316,7 +225,7 @@ public class Main {
 						}
 					}
 					else {
-						System.out.println("You made a mill, but you can´t remove a piece from your opponent (all his pieces belong to mills).");
+						System.out.println("You made a mill, but you canï¿½t remove a piece from your opponent (all his pieces belong to mills).");
 						break;
 					}
 				}
