@@ -4,9 +4,9 @@ import game.players.*;
 import game.board.*;
 
 public class Main {
-	static Scanner input = new Scanner(System.in);
-	static final int MAX_MOVES = 100; 
-	static Game game;
+	private static Scanner input = new Scanner(System.in);
+	private static final int MAX_MOVES = 100;
+	private static Game game;
 	
 	public static void main(String[] args) {
 		startGame();
@@ -18,7 +18,7 @@ public class Main {
 	 * and the starting player
 	 * @return The starting player 
 	 */
-	public static Player setupGame() {
+	private static Player setupGame() {
 		String userInput;
 		boolean playerStarts;
 		int depth;
@@ -63,7 +63,7 @@ public class Main {
 	/**
 	 * The method starting the game and calling every method neccessary to play the game 
 	 */
-	public static void startGame()  {
+	private static void startGame()  {
 		Player currentPlayer; 
 		int numberOfMoves = 0;
 		
@@ -112,7 +112,7 @@ public class Main {
 	 * @param currentPlayer The player in turn
 	 * @return Did the user give valid input?
 	 */
-	public static boolean firstPhaseMove(Game game, Player currentPlayer) {
+	private static boolean firstPhaseMove(Game game, Player currentPlayer) {
 		Move move;
 		int index;
 
@@ -128,7 +128,7 @@ public class Main {
 
 		} else {
 			game.printBoard();
-			System.out.println("It�s your turn. You�re in the Placing Pieces Phase. Give an index where to place the piece.");
+			System.out.println("It's your turn. You're in the Placing Pieces Phase. Give an index where to place the piece.");
 			try {
 				index = input.nextInt(); //might throw InputMismatchException
 				move = new Move(null, game.getBoard().getPos(index),null); //getPos might throw IllegalArgumentException
@@ -157,7 +157,7 @@ public class Main {
 	 * @param currentPlayer 
 	 * @return Did the user give valid input?
 	 */
-	public static boolean secondPhaseMove(Game game, Player currentPlayer) {
+	private static boolean secondPhaseMove(Game game, Player currentPlayer) {
 		Move move;
 		int sourceIndex, destIndex;
 		if(currentPlayer instanceof AIPlayer) {
@@ -170,7 +170,7 @@ public class Main {
 			}
 		} else {
 			game.printBoard();
-			System.out.println("It�s your turn. You�re in the " + currentPlayer.getGamePhase() + " Phase. Give a source index:");
+			System.out.println("It's your turn. You're in the " + currentPlayer.getGamePhase() + " Phase. Give a source index:");
 			try {
 				sourceIndex = input.nextInt(); //might throw InputMismatchException
 				System.out.println("Give a destination index:");
@@ -201,8 +201,8 @@ public class Main {
 	 * @param currentPlayer  
 	 * @param move The move that might made a mill
 	 */
-	public static void checkMill(Game game, Player currentPlayer, Move move) {
-		//You don�t need to check if the AIPlayer made a mill,
+	private static void checkMill(Game game, Player currentPlayer, Move move) {
+		//You don't need to check if the AIPlayer made a mill,
 		//because it was already checked in the computation of the best move and applied in applyMove 
 		if(game.checkIfMill(currentPlayer, move,null) && currentPlayer != game.getAIPlayer()) {
 			
@@ -216,7 +216,7 @@ public class Main {
 							game.getOtherPlayer(currentPlayer).decNumOfRemainingPieces();
 							return;
 						}
-						System.out.println("You made a mill. Give the index of the opponent�s piece to remove:");
+						System.out.println("You made a mill. Give the index of the opponent's piece to remove:");
 						removeIndex = input.nextInt();
 						if(game.removePiece(removeIndex, currentPlayer)) {
 							break;
@@ -225,7 +225,7 @@ public class Main {
 						}
 					}
 					else {
-						System.out.println("You made a mill, but you can�t remove a piece from your opponent (all his pieces belong to mills).");
+						System.out.println("You made a mill, but you can't remove a piece from your opponent (all his pieces belong to mills).");
 						break;
 					}
 				}

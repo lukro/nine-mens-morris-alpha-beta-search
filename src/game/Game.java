@@ -69,7 +69,7 @@ public class Game {
 		 * @param index Index of the position to be returned
 		 * @return Either the index or, if a piece is on this index, the symbol of the owning player
 		 */
-		public String positionCharacter(int index) {
+		private String positionCharacter(int index) {
 			Player playerOccupying = board.getPos(index).getPlayerOccupying();
 			//if there is no player at this position return the index
 			if(playerOccupying == null) {
@@ -93,7 +93,7 @@ public class Game {
 			List<Move> possibleMoves = new ArrayList<Move>();
 			
 			if(player.getGamePhase() == GamePhase.PLACING_PIECES) {
-				//moves don�t have sources in this phase, so insert one move for every
+				//moves don't have sources in this phase, so insert one move for every
 				//unoccupied destination into the list
 				for(int destIndex = 0; destIndex < Board.BOARD_SIZE; destIndex++) {
 					//destination unoccupied?
@@ -195,7 +195,7 @@ public class Game {
 		 *@param move 
 		 *@return Is the move valid?
 		 */
-		public boolean checkHumanMove(Move move) {
+		private boolean checkHumanMove(Move move) {
 			//for every game phase the destination position has to be unoccupied
 			if(!(move.getDestination().getPlayerOccupying() == null)) {
 				return false;
@@ -274,7 +274,7 @@ public class Game {
 				if(pieces == 3 && moveContainsPiece) { 
 					completedMill = true;
 					if(!(possibleMoves == null)) {
-						//you can only remove pieces that don�t belong to mills
+						//you can only remove pieces that don't belong to mills
 						if(allPiecesBelongToMill(getOtherPlayer(player))) {
 							possibleMoves.add(move);
 						}
@@ -296,7 +296,6 @@ public class Game {
 					}
 				}
 			}
-
 			if(!completedMill && possibleMoves != null) 
 				possibleMoves.add(move);
 			return completedMill;
@@ -307,7 +306,7 @@ public class Game {
 		 * @param
 		 * @return Is the piece removable?
 		 */
-		public boolean removable(Position pos, Player playerOwningPiece) {
+		private boolean removable(Position pos, Player playerOwningPiece) {
 			//when the player has less than 4 pieces you can remove all his pieces
 			if(playerOwningPiece.getGamePhase() == GamePhase.FLYING_PIECES)
 				return true;
@@ -375,10 +374,7 @@ public class Game {
 		 * @return Did currentPlayer loose?
 		 */
 		public boolean hasLost(Player currentPlayer) {
-			if(currentPlayer.getNumOfRemainingPieces() <= 2 || generatePossibleMoves(currentPlayer).size() == 0) {
-				return true;
-			}
-			return false;
+			return currentPlayer.getNumOfRemainingPieces() <= 2 || generatePossibleMoves(currentPlayer).size() == 0;
 		}
 		
 		/**
@@ -386,10 +382,7 @@ public class Game {
 		*because the possibleMoves don't need to be calculated
 		*/
 		public boolean hasLost(Player currentPlayer, List<Move> possibleMoves) {
-			if(currentPlayer.getNumOfRemainingPieces() <= 2 || possibleMoves.size() == 0) {
-				return true;
-			}
-			return false;
+			return currentPlayer.getNumOfRemainingPieces() <= 2 || possibleMoves.size() == 0;
 		}
 		
 }

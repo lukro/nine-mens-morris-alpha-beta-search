@@ -17,7 +17,7 @@ public class AIPlayer extends Player {
 	/**
 	 * Constructor calling its superclass constructor 
 	 * @param symbol shown in showPos 
-	 * @see Game.showPos()
+	 * @see //Game.showPos()
 	 * @param depth of the Alpha Beta Pruning Search
 	 */
 	public AIPlayer(char symbol, int depth) {
@@ -37,8 +37,8 @@ public class AIPlayer extends Player {
 		Collections.sort(moves);
 		
 		int value, bestValue = Integer.MIN_VALUE + 1;
-		List<Move> bestMoves = new ArrayList<Move>();
-		
+		List<Move> bestMoves = new ArrayList<>();
+
 		//look for the best moves and add them into a list 
 		for(Move move : moves) {
 			game.applyMove(move, game.getAIPlayer());
@@ -74,9 +74,9 @@ public class AIPlayer extends Player {
 	 * @param alpha 
 	 * @param beta
 	 * @return The recent alpha value.
-	 * @see https://en.wikipedia.org/wiki/Negamax#Negamax_with_alpha_beta_pruning
+	 * @see //https://en.wikipedia.org/wiki/Negamax#Negamax_with_alpha_beta_pruning
 	 */
-	public int alphaBeta(Game game, Player player, int remainingDepth, int alpha, int beta) {
+	private int alphaBeta(Game game, Player player, int remainingDepth, int alpha, int beta) {
 		
 		if(remainingDepth == 0)
 			return evaluate(game, player);
@@ -121,7 +121,7 @@ public class AIPlayer extends Player {
 	 * @param player The player at the deepest level of the search tree
 	 * @return The score indicating how good the game situation is for player
 	 */
-	public int evaluate(Game game, Player player) {
+	private int evaluate(Game game, Player player) {
 		//see
 		int playerNumOfMills = 0, opponentNumOfMills = 0;
 		int playerNumOfTwoPieceConf = 0, opponentNumOfTwoPieceConf = 0;
@@ -132,19 +132,19 @@ public class AIPlayer extends Player {
 
 		//lists saving all player and opponent rows (two piece configurations or mills)
 		//to calculate three piece configurations and double Mills
-		List<List<Position>> playerRows = new ArrayList<List<Position>>();
-		List<List<Position>> opponentRows = new ArrayList<List<Position>>();
+		List<List<Position>> playerRows = new ArrayList<>();
+		List<List<Position>> opponentRows = new ArrayList<>();
 
 		for(int i = 0; i < Board.POSSIBLE_MILLS.length; i++) {
 			int[] possibleMill = Board.POSSIBLE_MILLS[i]; 
 			int playerPieces = 0, opponentPieces = 0, empty = 0;
 			//preventively create a new Position array in case the row might make a mill or a two piece configuration
-			playerRows.add(new ArrayList<Position>());
-			opponentRows.add(new ArrayList<Position>());
+			playerRows.add(new ArrayList<>());
+			opponentRows.add(new ArrayList<>());
 			for(int j = 0; j < 3; j++) {
 				Position pos = game.getBoard().getPos(possibleMill[j]);
 				Player playerOccupying = pos.getPlayerOccupying();
-				//count the number of player´s pieces, its opponents pieces and the empty ones
+				//count the number of player's pieces, its opponents pieces and the empty ones
 				if(playerOccupying == player) {
 					playerPieces++;
 					playerRows.get(playerRows.size() -1).add(pos);
@@ -173,7 +173,7 @@ public class AIPlayer extends Player {
 				opponentNumOfTwoPieceConf++;
 				playerRows.remove(playerRows.size() - 1);
 			} else {
-				//if there´s neither a two piece conf nor a mill, we don´t need to save the row
+				//if there's neither a two piece conf nor a mill, we don't need to save the row
 				playerRows.remove(playerRows.size() - 1);
 				opponentRows.remove(opponentRows.size() - 1);
 
@@ -214,9 +214,9 @@ public class AIPlayer extends Player {
 	 * @param rows Every Two Piece Conf or mill of the player
 	 * @return Number of Three Pieces Confs
 	 */
-	public int findDuplicates(List<List<Position>> rows) {
+	private int findDuplicates(List<List<Position>> rows) {
 		//convert two dimensional list (list of lists) to one dimensional list (single list)
-		List<Position> oneDimList = new ArrayList<Position>();
+		List<Position> oneDimList = new ArrayList<>();
 		for(List<Position> row: rows) {
 			//only consider two piece confs
 			if(row.size() == 2) {
@@ -225,7 +225,7 @@ public class AIPlayer extends Player {
 		}
 		//now find number of duplicates by creating a Set (only contains unique elements) 
 		//and substract its size from the list of all row positions
-		Set<Position> positions = new HashSet<Position>(oneDimList);
+		Set<Position> positions = new HashSet<>(oneDimList);
 		int numberOfDuplicates = oneDimList.size() - positions.size();
 		return numberOfDuplicates;
 	}
@@ -237,7 +237,7 @@ public class AIPlayer extends Player {
 	 * @param rows The rows with Two Piece Confs or Mills
 	 * @return Number of Three Piece Configurations 
 	 */
-	public int findDoubleMills(Game game, Player player, List<List<Position>> rows) {
+	private int findDoubleMills(Game game, Player player, List<List<Position>> rows) {
 		int numOfDoubleMills = 0;
 		
 		//checks for every mill (row.size() == 3) if a move of its pieces to the 
@@ -248,7 +248,7 @@ public class AIPlayer extends Player {
 					for(Position adjPos : pos.getAdjacentPositions()) {
 						if(adjPos.getPlayerOccupying() == null) {
 							//execute Move partly to test if it creates a mill, but undo it afterwards
-							//no need to apply Move, because the number of pieces doesn´t need to be changed 
+							//no need to apply Move, because the number of pieces doesn't need to be changed
 							pos.setPlayerOccupying(null);
 							adjPos.setPlayerOccupying(player);
 							if(game.checkIfMill(player, new Move(pos, adjPos, null), null)) {
@@ -265,12 +265,12 @@ public class AIPlayer extends Player {
 	}
 	
 	/**
-	 * This method determines the player´s number of blocked pieces
+	 * This method determines the player's number of blocked pieces
 	 * @param game The game where everything takes place
 	 * @param player The player <b>owning</b> the blocked Pieces
-	 * @return Number of the player´s blocked pieces 
+	 * @return Number of the player's blocked pieces
 	 */
-	public int getNumOfBlockedPieces(Game game, Player player) {
+	private int getNumOfBlockedPieces(Game game, Player player) {
 		int numOfBlockedPieces = 0;
 		for(int i = 0; i < Board.BOARD_SIZE; i++) {
 			Position pos = game.getBoard().getPos(i);

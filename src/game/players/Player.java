@@ -55,28 +55,28 @@ public class Player {
 	}
 
 	/**
-	 * This method increments the player큦 number of placed pieces 
+	 * This method increments the player's number of placed pieces
 	 */
 	public void incNumOfPlacedPieces() {
 		numOfPlacedPieces++;
 		updateGamePhase();
 	}
 	/**
-	 * This method decrements the player큦 number of placed pieces
+	 * This method decrements the player's number of placed pieces
 	 */
 	public void decNumOfPlacedPieces() {
 		numOfPlacedPieces--;
 		updateGamePhase();		
 	}
 	/**
-	 * This method increments the player큦 number of remaining pieces
+	 * This method increments the player's number of remaining pieces
 	 */
 	public void incNumOfRemainingPieces() {
 		numOfRemainingPieces++;
 		updateGamePhase();
 	}
 	/**
-	 * This method decrements the player큦 number of remaining Pieces
+	 * This method decrements the player's number of remaining Pieces
 	 */
 	public void decNumOfRemainingPieces() {
 		numOfRemainingPieces--;
