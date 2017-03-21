@@ -3,8 +3,8 @@ import game.*;
 import game.players.*;
 import game.board.*;
 
-public class Main {
-	private static Scanner input = new Scanner(System.in);
+class Main {
+	private static final Scanner input = new Scanner(System.in);
 	private static final int MAX_MOVES = 100;
 	private static Game game;
 	
@@ -25,28 +25,38 @@ public class Main {
 		//use depth of the Minimax search as difficulty level
 		System.out.println("Please choose a difficulty: (H)ard, (M)edium, (E)asy");
 		userInput = input.nextLine().toUpperCase();
-		if(userInput.equals("H") || userInput.equals("HARD")) {
-			depth = 5;
-		} else if(userInput.equals("M") || userInput.equals("MEDIUM")) {
-			depth = 3;
-		} else if(userInput.equals("E") || userInput.equals("EASY")) {
-			depth = 1;
-		} else {
-			System.out.println("Command unknown");
-			return null;
+		switch (userInput) {
+			case "H":
+			case "HARD":
+				depth = 5;
+				break;
+			case "M":
+			case "MEDIUM":
+				depth = 3;
+				break;
+			case "E":
+			case "EASY":
+				depth = 1;
+				break;
+			default:
+				System.out.println("Command unknown");
+				return null;
 		}
 		
 		
 		System.out.println("Do you want to start? (Yes|No)");
 		userInput = input.nextLine().toUpperCase();
 		Player currentPlayer;
-		if(userInput.equals("YES")) {
-			playerStarts = true;
-		} else if(userInput.equals("NO")) {
-			playerStarts = false;
-		} else {
-			System.out.println("Command unknown");
-			return null;
+		switch (userInput) {
+			case "YES":
+				playerStarts = true;
+				break;
+			case "NO":
+				playerStarts = false;
+				break;
+			default:
+				System.out.println("Command unknown");
+				return null;
 		}
 		//set the respective color of the player and the currentPlayer to the player beginning
 		if(playerStarts) {
@@ -61,7 +71,7 @@ public class Main {
 	}
 	
 	/**
-	 * The method starting the game and calling every method neccessary to play the game 
+	 * The method starting the game and calling every method necessary to play the game
 	 */
 	private static void startGame()  {
 		Player currentPlayer; 

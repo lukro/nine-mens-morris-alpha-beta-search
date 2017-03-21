@@ -1,6 +1,6 @@
 package game;
 /**
- * Enum for all three game phases of nine mens morris 
+ * Enum for all three game phases of nine men's morris
  * including a String representation
  * @author Lukas
  *

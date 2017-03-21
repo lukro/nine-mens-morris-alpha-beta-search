@@ -15,7 +15,7 @@ public class Board {
 	//       15 16 17
 	//    18    19    20
 	// 21       22       23
-	private Position[] pos;
+	private final Position[] pos;
 	public static final int BOARD_SIZE = 24;
 	public static final int[][] POSSIBLE_MILLS = {
 			{0, 1, 2},
@@ -47,7 +47,7 @@ public class Board {
 	/**
 	 * Setup the connection of the positions on the board
 	 */
-	public void setupConnection() {
+	private void setupConnection() {
 		//creating the position objects
 		for(int i = 0; i < BOARD_SIZE; i++) {
 			pos[i] = new Position(i);

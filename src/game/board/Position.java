@@ -14,25 +14,25 @@ public class Position {
 	/** 
 	 * adjacency list of the position
 	 */
-	private List<Position> adjPos;
+	private final List<Position> adjPos;
 	/** 
 	* the player object occupying the position
-	* if unocuppied -> NULL
+	* if unoccupied -> NULL
 	*/
 	private Player playerOccupying;
 	
 	public Position() {
-		adjPos = new ArrayList<Position>();
+		adjPos = new ArrayList<>();
 	}
 	
 	public Position(int index) {
 		this.index = index;	
-		adjPos = new ArrayList<Position>();
+		adjPos = new ArrayList<>();
 	}
 	
 	public Position(int index, List<Position> adj) {
 		this.index = index;
-		adjPos = new ArrayList<Position>(adj);
+		adjPos = new ArrayList<>(adj);
 	}
 	
 	public int getIndex() {

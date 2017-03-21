@@ -6,14 +6,14 @@ import game.board.*;
 
 /**
  * This class commands the board and the players as well as 
- * the algorithms neccessary for the flow of play
+ * the algorithms necessary for the flow of play
  * @author Lukas
  *
  */
 public class Game {
-		private Board board;
-		private Player HumanPlayer;
-		private AIPlayer AIPlayer;
+		private final Board board;
+		private final Player HumanPlayer;
+		private final AIPlayer AIPlayer;
 		
 		public Game(int depth, char HumanSymbol, char AISymbol) {
 			HumanPlayer = new Player(HumanSymbol);
@@ -90,7 +90,7 @@ public class Game {
 		 * @return List of all possible moves including different taken pieces, if a move creates a mill
 		 */
 		public List<Move> generatePossibleMoves(Player player) {
-			List<Move> possibleMoves = new ArrayList<Move>();
+			List<Move> possibleMoves = new ArrayList<>();
 			
 			if(player.getGamePhase() == GamePhase.PLACING_PIECES) {
 				//moves don't have sources in this phase, so insert one move for every
@@ -247,7 +247,7 @@ public class Game {
 		}
 		
 		/**
-		 * This method checks, if a move makes a mill
+		 * This method checks if a move makes a mill
 		 * @param player The Player applying the move
 		 * @param move Move that might make a mill
 		 * @param possibleMoves The possibleMoves List used in generatePossibleMoves

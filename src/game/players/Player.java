@@ -16,7 +16,7 @@ public class Player {
 	/**
 	 * The symbol to display in the console
 	 */
-	private char symbol;
+	private final char symbol;
 	
 	public Player(char symbol) {
 		this.gamePhase = GamePhase.PLACING_PIECES;

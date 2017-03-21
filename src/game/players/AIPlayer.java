@@ -12,7 +12,7 @@ import game.board.*;
  * This class models the Computer Player
  */
 public class AIPlayer extends Player {
-	private int depth;
+	private final int depth;
 	
 	/**
 	 * Constructor calling its superclass constructor 
@@ -125,8 +125,8 @@ public class AIPlayer extends Player {
 		//see
 		int playerNumOfMills = 0, opponentNumOfMills = 0;
 		int playerNumOfTwoPieceConf = 0, opponentNumOfTwoPieceConf = 0;
-		int playerNumOfThreePieceConf = 0, opponentNumOfThreePieceConf = 0;
-		int playerNumOfDoubleMills = 0, opponentNumOfDoubleMills = 0;
+		int playerNumOfThreePieceConf, opponentNumOfThreePieceConf;
+		int playerNumOfDoubleMills, opponentNumOfDoubleMills;
 		int playerNumOfBlockedPieces = getNumOfBlockedPieces(game, player);
 		int opponentNumOfBlockedPieces = getNumOfBlockedPieces(game, game.getOtherPlayer(player));
 
@@ -217,12 +217,8 @@ public class AIPlayer extends Player {
 	private int findDuplicates(List<List<Position>> rows) {
 		//convert two dimensional list (list of lists) to one dimensional list (single list)
 		List<Position> oneDimList = new ArrayList<>();
-		for(List<Position> row: rows) {
-			//only consider two piece confs
-			if(row.size() == 2) {
-				oneDimList.addAll(row);
-			}
-		}
+		//only consider two piece confs
+		rows.stream().filter(row -> row.size() == 2).forEach(oneDimList::addAll);
 		//now find number of duplicates by creating a Set (only contains unique elements) 
 		//and substract its size from the list of all row positions
 		Set<Position> positions = new HashSet<>(oneDimList);

@@ -6,7 +6,9 @@ package game.board;
  * @author Lukas
  */
 public class Move implements Comparable<Move> {
-	public Position source,destination,pieceToRemove;
+	private final Position source;
+	private final Position destination;
+	private Position pieceToRemove;
 	
 	public Move(Position source, Position destination, Position pieceToRemove) {
 		this.source = source;
